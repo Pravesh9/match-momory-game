@@ -6,7 +6,6 @@ namespace MG
     {
         private static ScoreController s_instance;
         [SerializeField] private int baseScore = 1;
-        [SerializeField] private float comboMultiplier = 0.1f;
 
         public int Score { get; private set; }
         public int Combo { get; private set; }
