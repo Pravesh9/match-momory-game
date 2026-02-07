@@ -26,10 +26,6 @@ namespace MG
         private void Spawn(int a_rows, int a_cols)
         {
             IEnumerable<CardModel> l_models = boardService.GenerateBoard(a_rows, a_cols);
-            foreach (var item in l_models)
-            {
-                Debug.Log(item.Id);
-            }
             //Here we can pass this data to UI Views
             UIBoard.S_Init(l_models, a_rows, a_cols);
         }
