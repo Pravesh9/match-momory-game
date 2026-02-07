@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace MG
@@ -10,19 +11,23 @@ namespace MG
         private IMatchRule matchRule;
         private readonly List<CardTile> selected = new();
         private bool resolving;
+        private int totalPairs;
+        private int matchedPairs;
 
         private void Awake()
         {
             s_instance = this;
         }
-        public static void S_Init(IMatchRule a_rule)
+        public static void S_Init(IMatchRule a_rule, IEnumerable<CardModel> a_cardModels)
         {
-            s_instance.Init(a_rule);
+            s_instance.Init(a_rule, a_cardModels);
         }
-        private void Init(IMatchRule a_rule)
+        private void Init(IMatchRule a_rule, IEnumerable<CardModel> a_cardModels)
         {
             matchRule = a_rule;
             GameEvent.OnCardOpen += OnCardOpen;
+            totalPairs = a_cardModels.Count() / 2;
+            matchedPairs = 0;
         }
         private void OnCardOpen(CardTile a_tile)
         {
@@ -55,6 +60,13 @@ namespace MG
             else
             {
                 GameEvent.OnMatchSuccess?.Invoke();
+
+                matchedPairs++;
+
+                if (matchedPairs >= totalPairs)
+                {
+                    GameStateController.S_Win();
+                }
             }
 
             selected.Clear();

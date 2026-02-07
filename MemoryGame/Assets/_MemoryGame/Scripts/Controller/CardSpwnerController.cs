@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 namespace MG
 {
     public class CardSpawner : MonoBehaviour
@@ -9,6 +10,10 @@ namespace MG
         [SerializeField] private int row;
         [SerializeField] private int col;
         private IBoardService boardService;
+        private IEnumerable<CardModel> cardModels;
+
+        static public IEnumerable<CardModel> CardModels { get => s_intsance.cardModels; }
+
         private void Awake()
         {
             s_intsance = this;
@@ -25,9 +30,9 @@ namespace MG
 
         private void Spawn(int a_rows, int a_cols)
         {
-            IEnumerable<CardModel> l_models = boardService.GenerateBoard(a_rows, a_cols);
+            cardModels = boardService.GenerateBoard(a_rows, a_cols);
             //Here we can pass this data to UI Views
-            UIBoard.S_Init(l_models, a_rows, a_cols);
+            UIBoard.S_Init(cardModels, a_rows, a_cols);
         }
     }
 }

@@ -8,4 +8,6 @@ public static class GameEvent
     public static Action OnMatchFailed;
     public static Action<int> OnScoreChanged;
     public static Action<int> OnComboChanged;
+    public static Action OnGameWon;
+    public static Action OnGameLost;
 }
