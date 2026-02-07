@@ -8,6 +8,10 @@ namespace MG
         [SerializeField] private TextMeshProUGUI scoreText;
 
         const string SCORE = "Score: ";
+        void Start()
+        {
+            UpdateScore(0);
+        }
         private void OnEnable()
         {
             GameEvent.OnScoreChanged += UpdateScore;

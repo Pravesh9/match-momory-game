@@ -5,8 +5,8 @@ namespace MG
     public class ScoreController : MonoBehaviour, IScoreRule
     {
         private static ScoreController s_instance;
-        [SerializeField] private int baseScore = 100;
-        [SerializeField] private float comboMultiplier = 0.5f;
+        [SerializeField] private int baseScore = 1;
+        [SerializeField] private float comboMultiplier = 0.1f;
 
         public int Score { get; private set; }
         public int Combo { get; private set; }
@@ -15,17 +15,9 @@ namespace MG
         {
             s_instance = this;
         }
-        public static void S_AddMatchScore()
-        {
-            s_instance.AddMatchScore();
-        }
-        public static void S_BreakCombo()
-        {
-            s_instance.BreakCombo();
-        }
         public static void S_Init()
         {
-
+            s_instance.Init();
         }
         private void Init()
         {
@@ -41,10 +33,7 @@ namespace MG
         {
             Combo++;
 
-            int l_gained = Mathf.RoundToInt(
-                baseScore * (1 + Combo * comboMultiplier)
-            );
-
+            int l_gained = Mathf.RoundToInt(baseScore + Combo);
             Score += l_gained;
 
             GameEvent.OnScoreChanged?.Invoke(Score);
