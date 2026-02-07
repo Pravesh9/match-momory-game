@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 133724768}
   - component: {fileID: 133724767}
   - component: {fileID: 133724766}
-  - component: {fileID: 133724765}
   m_Layer: 5
   m_Name: LosePanel
   m_TagString: Untagged
@@ -163,21 +162,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &133724765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133724763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcbe7aad2b3f9ec4fa51c892cd2ef51d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  container: {fileID: 2088577967}
-  grid: {fileID: 0}
-  cardTilePrefab: {fileID: 1044249133754109209, guid: d2d162f0b823a7840b75e2b0fce2e656, type: 3}
 --- !u!114 &133724766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1952,21 +1936,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dffc94741be1bd42842acc7ee8a0b62, type: 3}
---- !u!114 &2437729405715326698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5876597471211229244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcbe7aad2b3f9ec4fa51c892cd2ef51d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  container: {fileID: 5228319926812479578}
-  grid: {fileID: 0}
-  cardTilePrefab: {fileID: 1044249133754109209, guid: d2d162f0b823a7840b75e2b0fce2e656, type: 3}
 --- !u!224 &3352011770414457745 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6986556287604217193, guid: 1dffc94741be1bd42842acc7ee8a0b62, type: 3}
@@ -2151,7 +2120,6 @@ GameObject:
   - component: {fileID: 4394754850829540817}
   - component: {fileID: 8894285582344446915}
   - component: {fileID: 7651552647703031812}
-  - component: {fileID: 2437729405715326698}
   m_Layer: 5
   m_Name: WinPanel
   m_TagString: Untagged

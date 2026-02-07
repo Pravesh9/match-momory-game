@@ -9,7 +9,7 @@ namespace MG
     {
         private static MatchController s_instance;
         private IMatchRule matchRule;
-        private readonly List<CardTile> selected = new();
+        private List<CardTile> selected;
         private bool resolving;
         private int totalPairs;
         private int matchedPairs;
@@ -28,6 +28,11 @@ namespace MG
             GameEvent.OnCardOpen += OnCardOpen;
             totalPairs = a_cardModels.Count() / 2;
             matchedPairs = 0;
+            selected = new List<CardTile>();
+        }
+        void OnDestroy()
+        {
+            GameEvent.OnCardOpen -= OnCardOpen;
         }
         private void OnCardOpen(CardTile a_tile)
         {
