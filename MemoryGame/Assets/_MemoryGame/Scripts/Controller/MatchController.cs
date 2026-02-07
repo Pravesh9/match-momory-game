@@ -49,6 +49,12 @@ namespace MG
             {
                 foreach (var tile in selected)
                     tile.CloseCard();
+
+                GameEvent.OnMatchFailed?.Invoke();
+            }
+            else
+            {
+                GameEvent.OnMatchSuccess?.Invoke();
             }
 
             selected.Clear();
