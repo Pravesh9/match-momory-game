@@ -17,6 +17,8 @@ namespace MG
         private void Init()
         {
             CardSpawner.S_Init(); //Card generation
+            IMatchRule l_matchRule = new PairMatchRule();
+            MatchController.S_Init(l_matchRule);
         }
 
     }

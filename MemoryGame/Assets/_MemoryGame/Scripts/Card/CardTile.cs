@@ -35,6 +35,7 @@ namespace MG
                 return;
 
             StartCoroutine(Flip(true));
+            GameEvent.OnCardOpen?.Invoke(this);
         }
 
         public void CloseCard()
