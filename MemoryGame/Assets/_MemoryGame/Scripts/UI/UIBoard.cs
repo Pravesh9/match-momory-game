@@ -10,7 +10,7 @@ namespace MG
         private static UIBoard s_instance;
         [SerializeField] private RectTransform container;
         [SerializeField] private GridLayoutGroup grid;
-        [SerializeField] private GameObject cardTilePrefab;
+        [SerializeField] private CardTile cardTilePrefab;
         IEnumerable<CardModel> cardModels;
         void Awake()
         {
@@ -25,7 +25,8 @@ namespace MG
             cardModels = a_cardModels;
             foreach (var item in a_cardModels)
             {
-                GameObject l_obj = Instantiate(cardTilePrefab, grid.transform);
+                CardTile l_Tile = Instantiate(cardTilePrefab, grid.transform);
+                l_Tile.Init(item);
             }
             ResizeGrid(a_rows, a_cols);
 
