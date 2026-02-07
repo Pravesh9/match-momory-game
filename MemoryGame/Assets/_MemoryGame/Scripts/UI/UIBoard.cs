@@ -32,28 +32,28 @@ namespace MG
 
             // Create a Card grid 
         }
-        private void ResizeGrid(int rows, int cols)
+        private void ResizeGrid(int a_rows, int a_cols)
         {
-            float spacing = 50f;
+            float l_spacing = 50f;
 
-            float containerWidth = container.rect.width;
-            float containerHeight = container.rect.height;
+            float l_containerWidth = container.rect.width;
+            float l_containerHeight = container.rect.height;
 
-            float horizontalSpacing = (cols - 1) * spacing;
-            float verticalSpacing = (rows - 1) * spacing;
+            float l_horizontalSpacing = (a_cols - 1) * l_spacing;
+            float l_verticalSpacing = (a_rows - 1) * l_spacing;
 
-            float usableWidth = containerWidth - horizontalSpacing;
-            float usableHeight = containerHeight - verticalSpacing;
+            float l_usableWidth = l_containerWidth - l_horizontalSpacing;
+            float l_usableHeight = l_containerHeight - l_verticalSpacing;
 
-            float cellWidth = usableWidth / cols;
-            float cellHeight = usableHeight / rows;
+            float l_cellWidth = l_usableWidth / a_cols;
+            float l_cellHeight = l_usableHeight / a_rows;
 
-            float cellSize = Mathf.Min(cellWidth, cellHeight);
+            float l_cellSize = Mathf.Min(l_cellWidth, l_cellHeight);
 
             grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            grid.constraintCount = cols;
-            grid.cellSize = new Vector2(cellSize, cellSize);
-            grid.spacing = new Vector2(spacing, spacing);
+            grid.constraintCount = a_cols;
+            grid.cellSize = new Vector2(l_cellSize, l_cellSize);
+            grid.spacing = new Vector2(l_spacing, l_spacing);
         }
     }
 
