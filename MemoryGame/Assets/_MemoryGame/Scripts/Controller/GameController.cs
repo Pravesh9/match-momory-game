@@ -29,16 +29,19 @@ namespace MG
             IMatchRule l_matchRule = new PairMatchRule();
             MatchController.S_Init(l_matchRule, CardSpawner.CardModels);
             ScoreController.S_Init();
+            UITimer.S_Init();
         }
 
         private void OnGameLose()
         {
             Debug.Log("OnGameLost!");
+            UIGame.S_ShowLosePanel();
         }
 
         private void OnGamewin()
         {
             Debug.Log("OnGameWin!");
+            UIGame.S_ShowWinPanel();
         }
 
 
