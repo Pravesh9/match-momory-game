@@ -4,8 +4,8 @@ namespace MG
     public class ScoreController : MonoBehaviour, IScoreRule
     {
         private static ScoreController s_instance;
-        [SerializeField] private int baseScore = 1;
-
+        [SerializeField] private GameSetting gameSetting;
+        private int baseScore = 1;
         public int Score { get; private set; }
         public int Combo { get; private set; }
 
@@ -26,6 +26,7 @@ namespace MG
         #region --------------------------------------------PRIVATE METHODS-----------------------------------
         private void Init()
         {
+            baseScore = gameSetting.ScoreIncrement;
             GameEvent.OnMatchSuccess += AddMatchScore;
             GameEvent.OnMatchFailed += BreakCombo;
         }

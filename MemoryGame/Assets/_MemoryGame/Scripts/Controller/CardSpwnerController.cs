@@ -6,9 +6,9 @@ namespace MG
     public class CardSpawner : MonoBehaviour
     {
         private static CardSpawner s_intsance;
-        [SerializeField] private CardTile cardPrefab;
-        [SerializeField] private int row;
-        [SerializeField] private int col;
+        [SerializeField] private GameSetting gameSetting;
+        private int row;
+        private int col;
         private IBoardService boardService;
         private IEnumerable<CardModel> cardModels;
 
@@ -34,6 +34,8 @@ namespace MG
         }
         private void Init()
         {
+            row = gameSetting.Row;
+            col = gameSetting.Col;
             Spawn(row, col);
         }
 

@@ -265,5 +265,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9ab2565d06d1745846c2d9f8a21a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 10
+  gameSetting: {fileID: 11400000, guid: 9a0826a7b67a1eb468104fb843b93f6a, type: 2}
   timerText: {fileID: 7909171573565571531}

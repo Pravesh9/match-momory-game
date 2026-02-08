@@ -8,9 +8,10 @@ public class SoundController : MonoBehaviour
 {
     private static SoundController s_instance;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip winClip;
-    [SerializeField] private AudioClip loseClip;
-    [SerializeField] private AudioClip flipClip;
+    [SerializeField] private SoundSetting soundSetting;
+    private AudioClip winClip;
+    private AudioClip loseClip;
+    private AudioClip flipClip;
 
     #region --------------------------------------------MONO METHODS-----------------------------------
     void Awake()
@@ -29,6 +30,10 @@ public class SoundController : MonoBehaviour
     #region --------------------------------------------PRIVATE METHODS-----------------------------------
     private void Init()
     {
+        winClip = soundSetting.WinClip;
+        loseClip = soundSetting.LoseClip;
+        flipClip = soundSetting.FlipClip;
+
         GameEvent.OnCardOpen += OnCardOpen;
         GameEvent.OnMatchSuccess += OnMatchSuccess;
         GameEvent.OnMatchFailed += OnMatchFailed;

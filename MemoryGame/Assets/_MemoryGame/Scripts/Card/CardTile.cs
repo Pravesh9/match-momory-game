@@ -88,6 +88,7 @@ namespace MG
             if (a_model.IsMatched)
             {
                 ForceSetOpen(true);
+                isMatched = true;
             }
         }
         public CardModel GetModel() => model;

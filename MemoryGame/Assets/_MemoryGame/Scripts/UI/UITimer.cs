@@ -6,7 +6,8 @@ namespace MG
     public class UITimer : MonoBehaviour
     {
         private static UITimer s_instance;
-        [SerializeField] private float timeLimit = 60f;
+        [SerializeField] private GameSetting gameSetting;
+        private float timeLimit = 60f;
         [SerializeField] private TextMeshProUGUI timerText;
         public float TimeRemaining { get; private set; }
         private bool running;
@@ -29,6 +30,7 @@ namespace MG
         #region --------------------------------------------PRIVATE METHODS-----------------------------------
         private void Init()
         {
+            timeLimit = gameSetting.TotalTimer;
             GameEvent.OnGameWon += OnGamWon;
             StartTimer();
         }
