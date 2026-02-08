@@ -26,6 +26,7 @@ namespace MG
         private void Init()
         {
             SaveController.S_Init();
+            SoundController.S_Init();
             if (SaveController.GameData != null)//It means already a progress match there
             {
                 LoadLastGame();
