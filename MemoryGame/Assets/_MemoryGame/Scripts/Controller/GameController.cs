@@ -32,6 +32,14 @@ namespace MG
             ScoreController.S_Init();
             UITimer.S_Init();
             SaveController.S_Init();
+
+            if (SaveController.GameData != null)//It means already a progress match there
+            {
+                //Reset all game board as per saved data\
+                GameSaveData l_data = SaveController.GameData;
+                ScoreController.SetScoreCombo(l_data.score, l_data.combo);
+                UITimer.SetTimeRemaing(l_data.timeRemaining);
+            }
         }
 
         private void OnGameLose()

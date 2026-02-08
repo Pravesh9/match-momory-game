@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace MG
 {
@@ -55,5 +56,12 @@ namespace MG
         }
         public static int GetSCore() => s_instance.Score;
         public static int GetCombo() => s_instance.Combo;
+        public static void SetScoreCombo(int a_score, int a_combo)
+        {
+            s_instance.Score = a_score;
+            s_instance.Combo = a_combo;
+            GameEvent.OnScoreChanged?.Invoke(s_instance.Score);
+            GameEvent.OnComboChanged?.Invoke(s_instance.Combo);
+        }
     }
 }

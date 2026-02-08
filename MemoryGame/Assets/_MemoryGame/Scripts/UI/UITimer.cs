@@ -60,5 +60,9 @@ namespace MG
             running = false;
         }
         public static float GetTime() => s_instance.TimeRemaining;
+        public static void SetTimeRemaing(float a_timeRemaining)
+        {
+            s_instance.TimeRemaining = a_timeRemaining;
+        }
     }
 }

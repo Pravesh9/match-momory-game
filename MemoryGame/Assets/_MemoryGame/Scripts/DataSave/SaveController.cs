@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MG;
+using System;
 public class SaveController : MonoBehaviour
 {
     private static SaveController s_instance;
     SaveService saveService;
     GameSaveData gameData;
 
-    public GameSaveData GameData { get => gameData; }
+    public static GameSaveData GameData { get => s_instance.gameData; }
 
     private void Awake()
     {
@@ -25,11 +26,29 @@ public class SaveController : MonoBehaviour
     private void Init()
     {
         saveService = new SaveService();
-        // if (saveService.HasSave())
-        // {
-        //     gameData = saveService.Load();
-        //     LoadFromSave(gameData);
-        // }
+        if (saveService.HasSave())
+        {
+            gameData = saveService.Load();
+            // LoadFromSave(gameData);
+        }
+        GameEvent.OnGameWon += OnGamewin;
+        GameEvent.OnGameLost += OnGameLose;
+    }
+
+    private void OnGameLose()
+    {
+        saveService.Clear();
+    }
+
+    private void OnGamewin()
+    {
+        saveService.Clear();
+    }
+
+    void OnDisable()
+    {
+        GameEvent.OnGameWon -= OnGamewin;
+        GameEvent.OnGameLost -= OnGameLose;
     }
 
     public GameSaveData CreateSave(
