@@ -15,42 +15,29 @@ namespace MG
 
         private bool isOpen;
         private bool isAnimating;
+        private bool isMatched;
 
-        public void Init(CardModel a_model)
-        {
-            model = a_model;
-            UpdateVisual();
-            openButton.onClick.AddListener(OnClick_OpenBtn);
-            SetClosedInstant();
-        }
 
+        #region --------------------------------------------PRIVATE METHODS-----------------------------------
         private void UpdateVisual()
         {
             idText.SetText(model.Id.ToString());
         }
 
-        public void OnClick_OpenBtn()
+        private void OnClick_OpenBtn()
         {
             if (isAnimating || isOpen)
                 return;
 
-            StartCoroutine(Flip(true));
+            // StartCoroutine(Flip(true));
             GameEvent.OnCardOpen?.Invoke(this);
-        }
-
-        public void CloseCard()
-        {
-            if (isAnimating || !isOpen)
-                return;
-
-            StartCoroutine(Flip(false));
         }
 
         private IEnumerator Flip(bool a_open)
         {
             isAnimating = true;
 
-            float l_duration = 0.15f;
+            float l_duration = 0.1f;
             float t = 0;
 
             Vector3 l_start = transform.localScale;
@@ -89,7 +76,51 @@ namespace MG
             closeCard.SetActive(true);
         }
 
-        public CardModel GetModel() => model;
+        #endregion
 
+        #region --------------------------------------------PUBLIC METHODS-----------------------------------
+        public void Init(CardModel a_model)
+        {
+            model = a_model;
+            UpdateVisual();
+            openButton.onClick.AddListener(OnClick_OpenBtn);
+            SetClosedInstant();
+            if (a_model.IsMatched)
+            {
+                ForceSetOpen(true);
+                isMatched = true;
+            }
+        }
+        public CardModel GetModel() => model;
+        public bool IsOpen() => isOpen;
+
+        public void ForceSetOpen(bool open)
+        {
+            isOpen = open;
+            openCard.SetActive(open);
+            closeCard.SetActive(!open);
+        }
+
+        public void SetMatch(bool a_isMatch)
+        {
+            isMatched = a_isMatch;
+        }
+        public bool HasMatched() => isMatched;
+        public void CloseCard()
+        {
+            if (isAnimating || !isOpen)
+                return;
+
+            StartCoroutine(Flip(false));
+        }
+        public void OpenCard()
+        {
+            if (isAnimating || isOpen)
+                return;
+
+            StartCoroutine(Flip(true));
+        }
+
+        #endregion
     }
 }
