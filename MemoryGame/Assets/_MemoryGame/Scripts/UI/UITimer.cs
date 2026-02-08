@@ -59,5 +59,6 @@ namespace MG
         {
             running = false;
         }
+        public static float GetTime() => s_instance.TimeRemaining;
     }
 }

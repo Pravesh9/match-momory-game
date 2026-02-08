@@ -13,6 +13,8 @@ namespace MG
         private IEnumerable<CardModel> cardModels;
 
         static public IEnumerable<CardModel> CardModels { get => s_intsance.cardModels; }
+        public static int Row { get => s_intsance.row; }
+        public static int Col { get => s_intsance.col; }
 
         private void Awake()
         {

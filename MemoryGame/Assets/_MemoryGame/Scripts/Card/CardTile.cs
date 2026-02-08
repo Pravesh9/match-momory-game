@@ -90,6 +90,15 @@ namespace MG
         }
 
         public CardModel GetModel() => model;
+        public bool IsOpen() => isOpen;
+
+        public void ForceSetOpen(bool open)
+        {
+            isOpen = open;
+            openCard.SetActive(open);
+            closeCard.SetActive(!open);
+        }
+
 
     }
 }

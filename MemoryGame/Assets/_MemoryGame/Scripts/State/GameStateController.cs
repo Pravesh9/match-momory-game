@@ -43,5 +43,6 @@ namespace MG
             State = GameState.LOST;
             GameEvent.OnGameLost?.Invoke();
         }
+        public static GameState GetCurrentState() => s_instance.State;
     }
 }

@@ -12,6 +12,9 @@ namespace MG
         [SerializeField] private GridLayoutGroup grid;
         [SerializeField] private CardTile cardTilePrefab;
         IEnumerable<CardModel> cardModels;
+        List<CardTile> cardTiles = new List<CardTile>();
+        public static List<CardTile> CardTiles { get => s_instance.cardTiles; }
+
         void Awake()
         {
             s_instance = this;
@@ -23,10 +26,12 @@ namespace MG
         private void Init(IEnumerable<CardModel> a_cardModels, int a_rows, int a_cols)
         {
             cardModels = a_cardModels;
+            cardTiles = new List<CardTile>();
             foreach (var item in a_cardModels)
             {
                 CardTile l_Tile = Instantiate(cardTilePrefab, grid.transform);
                 l_Tile.Init(item);
+                cardTiles.Add(l_Tile);
             }
             ResizeGrid(a_rows, a_cols);
 

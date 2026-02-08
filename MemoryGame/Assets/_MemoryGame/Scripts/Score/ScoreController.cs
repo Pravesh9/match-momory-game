@@ -53,5 +53,7 @@ namespace MG
             GameEvent.OnScoreChanged?.Invoke(Score);
             GameEvent.OnComboChanged?.Invoke(Combo);
         }
+        public static int GetSCore() => s_instance.Score;
+        public static int GetCombo() => s_instance.Combo;
     }
 }
