@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-
 namespace MG
 {
     public class ScoreController : MonoBehaviour, IScoreRule
@@ -11,14 +9,21 @@ namespace MG
         public int Score { get; private set; }
         public int Combo { get; private set; }
 
+        #region --------------------------------------------MONO METHODS-----------------------------------
         private void Awake()
         {
             s_instance = this;
         }
+        #endregion
+
+        #region --------------------------------------------STATIC METHODS-----------------------------------
         public static void S_Init()
         {
             s_instance.Init();
         }
+        #endregion
+
+        #region --------------------------------------------PRIVATE METHODS-----------------------------------
         private void Init()
         {
             GameEvent.OnMatchSuccess += AddMatchScore;
@@ -29,6 +34,9 @@ namespace MG
             GameEvent.OnMatchSuccess -= AddMatchScore;
             GameEvent.OnMatchFailed -= BreakCombo;
         }
+        #endregion
+
+        #region --------------------------------------------PUBLIC METHODS-----------------------------------
         public void AddMatchScore()
         {
             Combo++;
@@ -63,5 +71,6 @@ namespace MG
             GameEvent.OnScoreChanged?.Invoke(s_instance.Score);
             GameEvent.OnComboChanged?.Invoke(s_instance.Combo);
         }
+        #endregion
     }
 }

@@ -14,14 +14,21 @@ namespace MG
         private int totalPairs;
         private int matchedPairs;
 
+        #region --------------------------------------------MONO METHODS-----------------------------------
         private void Awake()
         {
             s_instance = this;
         }
+        #endregion
+
+        #region --------------------------------------------STATIC METHODS-----------------------------------
         public static void S_Init(IMatchRule a_rule, IEnumerable<CardModel> a_cardModels)
         {
             s_instance.Init(a_rule, a_cardModels);
         }
+        #endregion
+
+        #region --------------------------------------------PRIVATE METHODS-----------------------------------
         private void Init(IMatchRule a_rule, IEnumerable<CardModel> a_cardModels)
         {
             matchRule = a_rule;
@@ -90,5 +97,6 @@ namespace MG
 
             resolving = false;
         }
+        #endregion
     }
 }

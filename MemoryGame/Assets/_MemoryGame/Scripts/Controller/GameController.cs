@@ -8,6 +8,7 @@ namespace MG
     {
         private static GameController s_instance;
 
+        #region --------------------------------------------MONO METHODS-----------------------------------
         private void Awake()
         {
             s_instance = this;
@@ -18,7 +19,10 @@ namespace MG
             GameEvent.OnGameWon += OnGamewin;
             GameEvent.OnGameLost += OnGameLose;
         }
-        void OnDisable()
+        #endregion
+
+        #region --------------------------------------------PRIVATE METHODS-----------------------------------
+        private void OnDisable()
         {
             GameEvent.OnGameWon -= OnGamewin;
             GameEvent.OnGameLost -= OnGameLose;
@@ -82,13 +86,13 @@ namespace MG
             UIGame.S_ShowWinPanel();
         }
 
-        void OnApplicationPause(bool pause)
+        private void OnApplicationPause(bool pause)
         {
             if (pause)
                 SaveGame();
         }
 
-        void OnApplicationQuit()
+        private void OnApplicationQuit()
         {
             SaveGame();
         }
@@ -104,5 +108,6 @@ namespace MG
 
             SaveController.S_CreateSave(l_rows, l_cols, l_tiles, l_score, l_combo, l_timeRemaining);
         }
+        #endregion
     }
 }

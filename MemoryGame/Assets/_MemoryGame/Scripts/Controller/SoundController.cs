@@ -11,15 +11,22 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioClip winClip;
     [SerializeField] private AudioClip loseClip;
     [SerializeField] private AudioClip flipClip;
+
+    #region --------------------------------------------MONO METHODS-----------------------------------
     void Awake()
     {
         s_instance = this;
     }
+    #endregion
+
+    #region --------------------------------------------STATIC METHODS-----------------------------------
     public static void S_Init()
     {
         s_instance.Init();
     }
+    #endregion
 
+    #region --------------------------------------------PRIVATE METHODS-----------------------------------
     private void Init()
     {
         GameEvent.OnCardOpen += OnCardOpen;
@@ -61,4 +68,5 @@ public class SoundController : MonoBehaviour
     {
         Debug.Log("OnCardOpen");
     }
+    #endregion   
 }

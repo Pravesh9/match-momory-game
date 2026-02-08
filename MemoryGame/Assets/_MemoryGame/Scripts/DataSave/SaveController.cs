@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MG;
-using System;
 public class SaveController : MonoBehaviour
 {
     private static SaveController s_instance;
@@ -10,10 +9,14 @@ public class SaveController : MonoBehaviour
 
     public static GameSaveData GameData { get => s_instance.gameData; }
 
+    #region --------------------------------------------MONO METHODS-----------------------------------
     private void Awake()
     {
         s_instance = this;
     }
+    #endregion
+
+    #region --------------------------------------------STATIC METHODS-----------------------------------
     public static void S_Init()
     {
         s_instance.Init();
@@ -23,6 +26,9 @@ public class SaveController : MonoBehaviour
         var l_data = s_instance.CreateSave(a_rows, a_cols, a_tiles, a_score, a_combo, a_timeRemaining);
         s_instance.saveService.Save(l_data);
     }
+    #endregion
+
+    #region --------------------------------------------PRIVATE METHODS-----------------------------------
     private void Init()
     {
         saveService = new SaveService();
@@ -45,13 +51,13 @@ public class SaveController : MonoBehaviour
         saveService.Clear();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         GameEvent.OnGameWon -= OnGamewin;
         GameEvent.OnGameLost -= OnGameLose;
     }
 
-    public GameSaveData CreateSave(
+    private GameSaveData CreateSave(
            int a_rows,
            int a_cols,
            List<CardTile> a_tiles,
@@ -79,20 +85,5 @@ public class SaveController : MonoBehaviour
 
         return l_data;
     }
-    public void LoadFromSave(GameSaveData data)
-    {
-        List<CardModel> models = new();
-
-        foreach (var id in data.cardIds)
-            models.Add(new CardModel(id));
-
-        UIBoard.S_Init(models, data.rows, data.cols);
-
-        var tiles = FindObjectsOfType<CardTile>();
-
-        for (int i = 0; i < tiles.Length; i++)
-        {
-            tiles[i].ForceSetOpen(data.cardOpened[i]);
-        }
-    }
+    #endregion
 }

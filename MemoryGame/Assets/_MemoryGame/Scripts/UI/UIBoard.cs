@@ -15,14 +15,21 @@ namespace MG
         List<CardTile> cardTiles = new List<CardTile>();
         public static List<CardTile> CardTiles { get => s_instance.cardTiles; }
 
+        #region --------------------------------------------MONO METHODS-----------------------------------
         void Awake()
         {
             s_instance = this;
         }
+        #endregion
+
+        #region --------------------------------------------STATIC METHODS-----------------------------------
         public static void S_Init(IEnumerable<CardModel> a_cardModels, int a_rows, int a_cols)
         {
             s_instance.Init(a_cardModels, a_rows, a_cols);
         }
+        #endregion
+
+        #region --------------------------------------------PRIVATE METHODS-----------------------------------
         private void Init(IEnumerable<CardModel> a_cardModels, int a_rows, int a_cols)
         {
             cardModels = a_cardModels;
@@ -60,6 +67,7 @@ namespace MG
             grid.cellSize = new Vector2(l_cellSize, l_cellSize);
             grid.spacing = new Vector2(l_spacing, l_spacing);
         }
+        #endregion
     }
 
 }

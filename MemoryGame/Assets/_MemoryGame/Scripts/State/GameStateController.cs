@@ -7,10 +7,14 @@ namespace MG
         private static GameStateController s_instance;
         public GameState State { get; private set; }
 
+        #region --------------------------------------------MONO METHODS-----------------------------------
         void Awake()
         {
             s_instance = this;
         }
+        #endregion
+
+        #region --------------------------------------------STATIC METHODS-----------------------------------
         public static void S_Init()
         {
             s_instance.Init();
@@ -23,6 +27,10 @@ namespace MG
         {
             s_instance.Lose();
         }
+        public static GameState GetCurrentState() => s_instance.State;
+        #endregion
+
+        #region --------------------------------------------PRIVATE METHODS-----------------------------------
         private void Init()
         {
             State = GameState.PLAYING;
@@ -43,6 +51,7 @@ namespace MG
             State = GameState.LOST;
             GameEvent.OnGameLost?.Invoke();
         }
-        public static GameState GetCurrentState() => s_instance.State;
+
+        #endregion
     }
 }

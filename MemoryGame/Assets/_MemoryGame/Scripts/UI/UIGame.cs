@@ -8,10 +8,15 @@ namespace MG
         private static UIGame s_instance;
         [SerializeField] private GameObject winPanel;
         [SerializeField] private GameObject losePanel;
+
+        #region --------------------------------------------MONO METHODS-----------------------------------
         void Awake()
         {
             s_instance = this;
         }
+        #endregion
+
+        #region --------------------------------------------STATIC METHODS-----------------------------------
         public static void S_Init()
         {
             s_instance.Init();
@@ -24,6 +29,9 @@ namespace MG
         {
             s_instance.ShowLosePanel();
         }
+        #endregion
+
+        #region --------------------------------------------PRIVATE METHODS-----------------------------------
         private void Init()
         {
 
@@ -41,10 +49,13 @@ namespace MG
             a_panel.GetComponent<Canvas>().enabled = true;
             a_panel.GetComponent<GraphicRaycaster>().enabled = true;
         }
+        #endregion
+
+        #region --------------------------------------------PUBLIC METHODS-----------------------------------
         public void OnClick_PlayButton()
         {
             SceneHandler.S_LoadGameScene();
         }
-
+        #endregion
     }
 }

@@ -17,38 +17,20 @@ namespace MG
         private bool isAnimating;
         private bool isMatched;
 
-        public void Init(CardModel a_model)
-        {
-            model = a_model;
-            UpdateVisual();
-            openButton.onClick.AddListener(OnClick_OpenBtn);
-            SetClosedInstant();
-            if (a_model.IsMatched)
-            {
-                ForceSetOpen(true);
-            }
-        }
 
+        #region --------------------------------------------PRIVATE METHODS-----------------------------------
         private void UpdateVisual()
         {
             idText.SetText(model.Id.ToString());
         }
 
-        public void OnClick_OpenBtn()
+        private void OnClick_OpenBtn()
         {
             if (isAnimating || isOpen)
                 return;
 
             StartCoroutine(Flip(true));
             GameEvent.OnCardOpen?.Invoke(this);
-        }
-
-        public void CloseCard()
-        {
-            if (isAnimating || !isOpen)
-                return;
-
-            StartCoroutine(Flip(false));
         }
 
         private IEnumerator Flip(bool a_open)
@@ -94,6 +76,20 @@ namespace MG
             closeCard.SetActive(true);
         }
 
+        #endregion
+
+        #region --------------------------------------------PUBLIC METHODS-----------------------------------
+        public void Init(CardModel a_model)
+        {
+            model = a_model;
+            UpdateVisual();
+            openButton.onClick.AddListener(OnClick_OpenBtn);
+            SetClosedInstant();
+            if (a_model.IsMatched)
+            {
+                ForceSetOpen(true);
+            }
+        }
         public CardModel GetModel() => model;
         public bool IsOpen() => isOpen;
 
@@ -109,6 +105,13 @@ namespace MG
             isMatched = a_isMatch;
         }
         public bool HasMatched() => isMatched;
+        public void CloseCard()
+        {
+            if (isAnimating || !isOpen)
+                return;
 
+            StartCoroutine(Flip(false));
+        }
+        #endregion
     }
 }
