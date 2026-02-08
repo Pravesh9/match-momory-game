@@ -29,7 +29,7 @@ namespace MG
             if (isAnimating || isOpen)
                 return;
 
-            StartCoroutine(Flip(true));
+            // StartCoroutine(Flip(true));
             GameEvent.OnCardOpen?.Invoke(this);
         }
 
@@ -37,7 +37,7 @@ namespace MG
         {
             isAnimating = true;
 
-            float l_duration = 0.15f;
+            float l_duration = 0.1f;
             float t = 0;
 
             Vector3 l_start = transform.localScale;
@@ -113,6 +113,14 @@ namespace MG
 
             StartCoroutine(Flip(false));
         }
+        public void OpenCard()
+        {
+            if (isAnimating || isOpen)
+                return;
+
+            StartCoroutine(Flip(true));
+        }
+
         #endregion
     }
 }

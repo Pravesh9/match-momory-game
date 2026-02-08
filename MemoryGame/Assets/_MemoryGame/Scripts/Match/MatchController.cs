@@ -52,6 +52,7 @@ namespace MG
             if (resolving)
                 return;
 
+            a_tile.OpenCard();
             selected.Add(a_tile);
 
             if (selected.Count >= matchRule.RequiredCount)
