@@ -27,7 +27,13 @@ namespace MG
             matchRule = a_rule;
             GameEvent.OnCardOpen += OnCardOpen;
             totalPairs = a_cardModels.Count() / 2;
-            matchedPairs = 0;
+            int l_matchCount = 0;
+            foreach (var item in a_cardModels)
+            {
+                if (item.IsMatched) l_matchCount++;
+            }
+            l_matchCount = l_matchCount / 2;
+            matchedPairs = l_matchCount;
             selected = new List<CardTile>();
         }
         void OnDestroy()
