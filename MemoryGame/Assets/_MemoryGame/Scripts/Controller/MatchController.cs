@@ -58,7 +58,10 @@ namespace MG
             if (!l_match)
             {
                 foreach (var tile in selected)
+                {
                     tile.CloseCard();
+                    tile.SetMatch(false);
+                }
 
                 GameEvent.OnMatchFailed?.Invoke();
             }
@@ -67,7 +70,10 @@ namespace MG
                 GameEvent.OnMatchSuccess?.Invoke();
 
                 matchedPairs++;
-
+                foreach (var tile in selected)
+                {
+                    tile.SetMatch(true);
+                }
                 if (matchedPairs >= totalPairs)
                 {
                     GameStateController.S_Win();

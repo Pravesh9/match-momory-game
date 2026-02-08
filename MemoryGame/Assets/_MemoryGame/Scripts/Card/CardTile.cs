@@ -15,6 +15,7 @@ namespace MG
 
         private bool isOpen;
         private bool isAnimating;
+        private bool isMatched;
 
         public void Init(CardModel a_model)
         {
@@ -22,6 +23,10 @@ namespace MG
             UpdateVisual();
             openButton.onClick.AddListener(OnClick_OpenBtn);
             SetClosedInstant();
+            if (a_model.IsMatched)
+            {
+                ForceSetOpen(true);
+            }
         }
 
         private void UpdateVisual()
@@ -99,6 +104,11 @@ namespace MG
             closeCard.SetActive(!open);
         }
 
+        public void SetMatch(bool a_isMatch)
+        {
+            isMatched = a_isMatch;
+        }
+        public bool HasMatched() => isMatched;
 
     }
 }

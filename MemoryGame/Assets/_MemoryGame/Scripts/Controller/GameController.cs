@@ -25,21 +25,48 @@ namespace MG
         }
         private void Init()
         {
+            SaveController.S_Init();
+            if (SaveController.GameData != null)//It means already a progress match there
+            {
+                LoadLastGame();
+            }
+            else
+            {
+                PlayNewGame();
+            }
+
+        }
+
+        private static void LoadLastGame()
+        {
+            //Reset all game board as per saved data\
+            GameSaveData l_data = SaveController.GameData;
+            List<CardModel> l_cardModels = new List<CardModel>();
+            for (int i = 0; i < l_data.cardIds.Count; i++)
+            {
+                CardModel l_cardmodel = new CardModel(l_data.cardIds[i]);
+                l_cardmodel.IsMatched = l_data.cardOpened[i];
+                l_cardModels.Add(l_cardmodel);
+            }
+            CardSpawner.S_Init(l_cardModels, l_data.rows, l_data.cols); //Card generation
+            GameStateController.S_Init();
+            IMatchRule l_matchRule = new PairMatchRule();
+            MatchController.S_Init(l_matchRule, CardSpawner.CardModels);
+            ScoreController.S_Init();
+            UITimer.S_Init();
+
+            ScoreController.SetScoreCombo(l_data.score, l_data.combo);
+            UITimer.SetTimeRemaing(l_data.timeRemaining);
+        }
+
+        private static void PlayNewGame()
+        {
             CardSpawner.S_Init(); //Card generation
             GameStateController.S_Init();
             IMatchRule l_matchRule = new PairMatchRule();
             MatchController.S_Init(l_matchRule, CardSpawner.CardModels);
             ScoreController.S_Init();
             UITimer.S_Init();
-            SaveController.S_Init();
-
-            if (SaveController.GameData != null)//It means already a progress match there
-            {
-                //Reset all game board as per saved data\
-                GameSaveData l_data = SaveController.GameData;
-                ScoreController.SetScoreCombo(l_data.score, l_data.combo);
-                UITimer.SetTimeRemaing(l_data.timeRemaining);
-            }
         }
 
         private void OnGameLose()
@@ -62,7 +89,6 @@ namespace MG
 
         void OnApplicationQuit()
         {
-
             SaveGame();
         }
         private void SaveGame()

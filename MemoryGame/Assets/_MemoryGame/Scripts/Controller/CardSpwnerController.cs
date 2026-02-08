@@ -25,6 +25,13 @@ namespace MG
         {
             s_intsance.Init();
         }
+        public static void S_Init(List<CardModel> a_cardModels, int a_rows, int a_cols)
+        {
+            s_intsance.cardModels = a_cardModels;
+            s_intsance.row = a_rows;
+            s_intsance.col = a_cols;
+            UIBoard.S_Init(s_intsance.cardModels, a_rows, a_cols);
+        }
         private void Init()
         {
             Spawn(row, col);

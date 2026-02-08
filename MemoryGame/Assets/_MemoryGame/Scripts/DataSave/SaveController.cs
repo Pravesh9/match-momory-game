@@ -70,7 +70,7 @@ public class SaveController : MonoBehaviour
         foreach (var t in a_tiles)
         {
             l_data.cardIds.Add(t.GetModel().Id);
-            l_data.cardOpened.Add(t.IsOpen());
+            l_data.cardOpened.Add(t.HasMatched());
         }
 
         l_data.score = a_score;
